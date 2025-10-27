@@ -1,0 +1,62 @@
+/* Section utama */
+.about-section {
+    background: #f9f6f2;
+    padding: 50px 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 20px;
+    transition: transform 0.3s ease;
+}
+
+/* Hover section ada sedikit efek naik */
+.about-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Judul */
+.about-section .title {
+    font-size: 2rem;
+    color: #8a6a50;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Paragraf teks utama */
+.about-section p {
+    font-size: 1.2rem;
+    color: #6b4f3f;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+/* Paragraf penekanan */
+.about-section .highlight {
+    color: #b48464;
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-top: 20px;
+}
+
+/* Responsif buat layar kecil */
+@media (max-width: 600px) {
+    .about-section {
+        padding: 20px;
+    }
+
+    .about-section .title {
+        font-size: 1.5rem;
+    }
+
+    .about-section p {
+        font-size: 1rem;
+    }
+
+    .about-section .highlight {
+        font-size: 1.1rem;
+    }
+}

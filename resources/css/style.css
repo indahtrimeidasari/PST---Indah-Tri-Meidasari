@@ -1,0 +1,74 @@
+/* Styling Umum */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+}
+
+/* Navbar */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background: rgba(255, 255, 255, 0.7); /* Transparan */
+    backdrop-filter: blur(5px);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+nav ul li a:hover, .menu.active {
+    color: goldenrod;
+}
+
+/* Konten */
+.content {
+    display: none;
+    padding: 80px 50px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    margin: 80px auto;
+    width: 80%;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.content.active {
+    display: block;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.highlight {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}

@@ -1,0 +1,92 @@
+/* Container styling */
+.contact-page-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 900px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+
+    /* Posisi tengah tapi turun dikit biar gak nutup header */
+    position: absolute;
+    top: 55%; /* Geser sedikit ke bawah */
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Left side info styling */
+.contact-page-info {
+    background: linear-gradient(135deg, #b48464, #d9bfa9);
+    color: #fff;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.contact-page-info h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+/* Right side form styling */
+.contact-page-form {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contact-page-form h2 {
+    margin-bottom: 10px;
+    color: #b48464;
+}
+
+/* Input styling */
+.contact-page-form input,
+.contact-page-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Button styling */
+.contact-page-form button {
+    background-color: #b48464;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s ease;
+}
+
+.contact-page-form button:hover {
+    background-color: #8a6a50;
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 600px) {
+    .contact-page-container {
+        grid-template-columns: 1fr;
+        width: 90%;
+        position: static; /* Biar gak ada masalah di mobile */
+        transform: none;
+        margin: auto;
+        margin-top: 20px;
+    }
+
+    .contact-page-info {
+        padding: 20px;
+    }
+
+    .contact-page-form {
+        padding: 20px;
+    }
+}

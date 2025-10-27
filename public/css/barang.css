@@ -1,0 +1,80 @@
+/* Kartu produk */
+.product-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 300px;
+    overflow: hidden;
+    border: 1px solid #e0c3a3; /* Sentuhan warna soft earthy */
+}
+
+/* Efek hover kartu */
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Gambar produk */
+.product-card img {
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+/* Hover gambar sedikit membesar */
+.product-card:hover img {
+    transform: scale(1.05);
+}
+
+/* Nama produk */
+.product-title {
+    font-size: 1.5rem;
+    color: #8a6a50; /* Warna earthy lembut */
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Harga produk */
+.product-price {
+    color: #b48464;
+    font-size: 1.2rem;
+    margin: 5px 0;
+    font-weight: 500;
+}
+
+/* Tombol beli */
+.btn-buy {
+    background-color: #b48464; /* Warna coklat lembut */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-size: 1rem;
+    margin-top: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover tombol beli */
+.btn-buy:hover {
+    background-color: #8a6a50;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .container .row {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .product-card {
+        width: 100%;
+    }
+}
