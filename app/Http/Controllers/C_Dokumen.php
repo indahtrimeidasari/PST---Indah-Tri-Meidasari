@@ -46,7 +46,7 @@ class C_Dokumen extends Controller
             'nama_dokumen' => $validated['nama_dokumen'],
             'deskripsi' => $validated['deskripsi'] ?? null,
             'tipe' => $validated['tipe'],
-            'file_path' => $filePath,
+            'file_path' => $validated['tipe'] === 'pdf' ? $filePath : null,
             'foto' => $validated['tipe'] === 'foto' ? $filePath : null,
             'video_link' => $validated['video_link'] ?? null,
         ]);
@@ -67,31 +67,43 @@ class C_Dokumen extends Controller
             'tipe' => 'required|in:foto,video,pdf',
         ];
 
+        // Validasi sesuai tipe dokumen
         if ($request->tipe === 'video') {
             $rules['video_link'] = 'required|url';
         } elseif ($request->tipe === 'foto') {
-            $rules['file'] = 'nullable|mimes:jpg,jpeg,png|max:10240';
+            $rules['foto'] = 'nullable|mimes:jpg,jpeg,png|max:10240';
         } elseif ($request->tipe === 'pdf') {
-            $rules['file'] = 'nullable|mimes:pdf|max:10240';
+            $rules['file_path'] = 'nullable|mimes:pdf|max:10240';
         }
 
         $validated = $request->validate($rules);
 
-        $filePath = $dokumen->file_path;
-        if ($request->hasFile('file')) {
-            if ($filePath && Storage::disk('public')->exists($filePath)) {
-                Storage::disk('public')->delete($filePath);
+        $filePath = $dokumen->file_path; // default file path
+
+        // Upload foto
+        if ($request->tipe === 'foto' && $request->hasFile('foto')) {
+            if ($dokumen->foto && Storage::disk('public')->exists($dokumen->foto)) {
+                Storage::disk('public')->delete($dokumen->foto);
             }
-            $filePath = $request->file('file')->store('uploads/dokumen', 'public');
+            $filePath = $request->file('foto')->store('uploads/dokumen', 'public');
         }
 
+        // Upload PDF
+        if ($request->tipe === 'pdf' && $request->hasFile('file_path')) {
+            if ($dokumen->file_path && Storage::disk('public')->exists($dokumen->file_path)) {
+                Storage::disk('public')->delete($dokumen->file_path);
+            }
+            $filePath = $request->file('file_path')->store('uploads/dokumen', 'public');
+        }
+
+        // Update data
         $dokumen->update([
             'nama_dokumen' => $validated['nama_dokumen'],
             'deskripsi' => $validated['deskripsi'] ?? null,
             'tipe' => $validated['tipe'],
-            'file_path' => $filePath,
-            'foto' => $validated['tipe'] === 'foto' ? $filePath : null,
-            'video_link' => $validated['video_link'] ?? null,
+            'file_path' => $request->tipe === 'pdf' ? $filePath : null,
+            'foto' => $request->tipe === 'foto' ? $filePath : null,
+            'video_link' => $request->tipe === 'video' ? $validated['video_link'] ?? null : null,
         ]);
 
         return redirect()->route('dokumen.index')->with('success', 'Dokumen berhasil diperbarui!');
@@ -101,6 +113,9 @@ class C_Dokumen extends Controller
     {
         if ($dokumen->file_path && Storage::disk('public')->exists($dokumen->file_path)) {
             Storage::disk('public')->delete($dokumen->file_path);
+        }
+        if ($dokumen->foto && Storage::disk('public')->exists($dokumen->foto)) {
+            Storage::disk('public')->delete($dokumen->foto);
         }
         $dokumen->delete();
 

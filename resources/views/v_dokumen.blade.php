@@ -43,26 +43,28 @@
                             <td class="text-center">
                                 @php
                                     $tipe = strtolower($item->tipe ?? '');
-                                    $ext = strtolower(pathinfo($item->file_path ?? '', PATHINFO_EXTENSION));
                                     $yt_embed = null;
+
                                     if(!empty($item->video_link)) {
-                                        if(Str::contains($item->video_link, 'youtube.com')) {
-                                            $yt_embed = preg_replace("/watch\?v=/", "embed/", $item->video_link);
-                                        } elseif(Str::contains($item->video_link, 'youtu.be')) {
-                                            $yt_embed = str_replace('youtu.be/', 'www.youtube.com/embed/', $item->video_link);
+                                        preg_match('/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^\&\?\/]+)/', $item->video_link, $matches);
+                                        if(isset($matches[1])) {
+                                            $yt_embed = "https://www.youtube.com/embed/".$matches[1];
                                         }
                                     }
                                 @endphp
 
+                                {{-- Preview PDF --}}
                                 @if (($tipe === 'pdf' || $tipe === 'dokumen') && !empty($item->file_path))
                                     <a href="{{ asset('storage/' . $item->file_path) }}" target="_blank" class="btn btn-sm btn-outline-primary">📄 Lihat PDF</a>
+                                {{-- Preview Foto --}}
                                 @elseif ($tipe === 'foto' && !empty($item->foto))
                                     <a href="{{ asset('storage/' . $item->foto) }}" target="_blank">
                                         <img src="{{ asset('storage/' . $item->foto) }}" width="90" height="70" style="object-fit: cover; border-radius:10px;">
                                     </a>
+                                {{-- Preview Video --}}
                                 @elseif ($tipe === 'video' && $yt_embed)
-                                    <div class="ratio ratio-16x9" style="max-width:200px;">
-                                        <iframe src="{{ $yt_embed }}" allowfullscreen loading="lazy" style="border-radius:10px;"></iframe>
+                                    <div style="max-width: 200px; margin:auto; border-radius:10px; overflow:hidden;">
+                                        <iframe class="w-100" style="aspect-ratio:16/9; border:0;" src="{{ $yt_embed }}" allowfullscreen loading="lazy"></iframe>
                                     </div>
                                 @else
                                     <span class="text-muted">Tidak ada file</span>
@@ -91,3 +93,4 @@
     </div>
 </div>
 @endsection
+                                    

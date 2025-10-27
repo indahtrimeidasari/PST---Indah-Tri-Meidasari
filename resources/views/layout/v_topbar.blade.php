@@ -1,15 +1,5 @@
 <style>
-  .btn-coklat {
-    background-color: #795548;
-    color: white;
-    border: none;
-  }
-  .btn-coklat:hover {
-    background-color: #5D4037;
-    color: white;
-  }
-
-  /* CSS untuk tombol coklat */
+    /* Tombol coklat */
     .btn-coklat {
         background-color: #795548;
         color: white;
@@ -20,48 +10,40 @@
         color: white;
     }
 
-    /* CSS untuk judul "Budidaya Jamur Merang" di navbar */
+    /* Judul navbar gradasi */
     .navbar-brand-custom {
-        font-family: 'Montserrat', sans-serif; /* Font modern dan elegan */
-        font-size: 1.5rem; /* Ukuran teks yang cukup besar */
-        font-weight: 800; /* Ketebalan ekstra */
-        text-transform: uppercase; /* Huruf kapital */
-        letter-spacing: 1px; /* Spasi antar huruf */
-
-        /* Warna Gradasi Elegan (Emas ke Coklat Gelap) */
-        background: linear-gradient(45deg,rgb(231, 187, 76), #DAA520, #8B4513);
-        
-        -webkit-background-clip: text; /* Menerapkan gradasi ke teks */
-        -webkit-text-fill-color: transparent; /* Membuat teks transparan agar gradasi terlihat */
-        
-        text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3); /* Bayangan untuk kedalaman */
-        
-        transition: all 0.4s ease-in-out; /* Efek transisi untuk hover */
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        background: linear-gradient(45deg, rgb(231, 187, 76), #DAA520, #8B4513);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+        transition: all 0.4s ease-in-out;
     }
-
     .navbar-brand-custom:hover {
-        transform: translateY(-2px) scale(1.02); /* Sedikit naik dan membesar saat hover */
-        opacity: 0.9; /* Sedikit transparan saat hover */
-        text-shadow: 2px 3px 6px rgba(0, 0, 0, 0.4); /* Bayangan lebih kuat saat hover */
+        transform: translateY(-2px) scale(1.02);
+        opacity: 0.9;
+        text-shadow: 2px 3px 6px rgba(0, 0, 0, 0.4);
     }
 
-    /* Penyesuaian responsif untuk judul */
-    @media (max-width: 991.98px) { /* Untuk ukuran tablet dan di bawahnya */
+    /* Responsif judul */
+    @media (max-width: 991.98px) {
         .navbar-brand-custom {
             font-size: 1.8rem;
             letter-spacing: 0.5px;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
         }
     }
-
-    @media (max-width: 767.98px) { /* Untuk ukuran ponsel */
+    @media (max-width: 767.98px) {
         .navbar-brand-custom {
             font-size: 1.4rem;
             font-weight: 700;
         }
-        /* Opsional: sembunyikan elemen di sisi kanan navbar pada layar sangat kecil
-           agar judul tidak terlalu tertekan */
-        .navbar .navbar-nav.ml-auto {
+        /* Sembunyikan elemen user info di layar kecil */
+        .navbar-nav.ml-auto {
             display: none;
         }
     }
@@ -69,62 +51,68 @@
 
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
+    <!-- Sidebar Toggle (Topbar) -->
+    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+        <i class="fa fa-bars"></i>
+    </button>
+
+    <!-- Judul Smart Tech -->
 <div class="container-fluid d-flex justify-content-center align-items-center flex-grow-1">
-        <a class="navbar-brand-custom" href="#">
-            Budidaya Jamur Merang
-        </a>
-    </div>
+    <a class="navbar-brand-custom d-flex align-items-center" href="{{ url('/dashboard') }}">
+        <i class="fas fa-leaf mr-2"></i>
+        <span>DASHBOARD SMART TECH</span>
+    </a>
+</div>
 
-  <!-- Sidebar Toggle (Topbar) -->
-  <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-    <i class="fa fa-bars"></i>
-  </button>
+<style>
+    .navbar-brand-custom {
+        font-weight: 700;
+        font-size: 1.5rem;
+        text-decoration: none;
+        background: linear-gradient(90deg, #001F3F, #4B0082, #002244); /* gradasi biru dongker + ungu */
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transition: all 0.3s ease;
+    }
 
-  <!-- Topbar Navbar -->
-  <ul class="navbar-nav ml-auto">
+    .navbar-brand-custom:hover {
+        text-shadow: 0 0 10px rgba(75, 0, 130, 0.6);
+        transform: scale(1.05);
+    }
 
-    <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-    <li class="nav-item dropdown no-arrow d-sm-none">
-      <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-search fa-fw"></i>
-      </a>
-      <!-- Dropdown - Messages -->
-      <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-        <form class="form-inline mr-auto w-100 navbar-search">
-        </form>
-      </div>
-    </li>
+    .navbar-brand-custom i {
+        color: #4B0082; /* warna ikon */
+    }
+</style>
 
-    
 
-    <div class="topbar-divider d-none d-sm-block"></div>
+    <!-- Topbar Navbar (User) -->
+    <ul class="navbar-nav ml-auto">
+        <div class="topbar-divider d-none d-sm-block"></div>
 
-    <!-- Nav Item - User Information -->
-    <li class="nav-item dropdown no-arrow">
-      <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      </a>
-      <!-- Dropdown - User Information -->
-      <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-        <a class="dropdown-item" href="#">
-          <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-          Profile
-        </a>
-        <a class="dropdown-item" href="#">
-          <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-          Settings
-        </a>
-        <a class="dropdown-item" href="#">
-          <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-          Activity Log
-        </a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-          <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-          Logout
-        </a>
-      </div>
-    </li>
-
-  </ul>
+        <!-- User Info -->
+        <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown"
+               role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img class="img-profile rounded-circle" width="40" height="40"
+                     src="{{ Auth::user()->foto ? asset('storage/foto_user/' . Auth::user()->foto) : asset('images/default-avatar.png') }}">
+                <span class="ml-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    ✏️ Edit Profil
+                </a>
+                <div class="dropdown-divider"></div>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="dropdown-item text-danger">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                        🚪 Logout
+                    </button>
+                </form>
+            </div>
+        </li>
+    </ul>
 
 </nav>

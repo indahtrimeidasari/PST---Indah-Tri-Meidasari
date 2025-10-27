@@ -1,4 +1,4 @@
-{{-- resources/views/layout/v_template.blade.php --}}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -1,130 +1,95 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>@yield('title', 'Smart Tech Dashboard')</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@yield('title', 'Smart Tech Dashboard')</title>
 
-  {{-- Bootstrap --}}
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts & Icons -->
+    <link href="{{ asset('template/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900" rel="stylesheet">
 
-  {{-- Styling --}}
-  <style>
-    body {
-      background: linear-gradient(135deg, #eef2ff, #f8f9ff);
-      font-family: 'Nunito', sans-serif;
-      color: #333;
-    }
+    <!-- SB Admin 2 CSS -->
+    <link href="{{ asset('template/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
-    /* Sidebar */
-    .sidebar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 230px;
-      height: 100%;
-      background: linear-gradient(180deg, #5c6bc0, #7986cb, #c5cae9);
-      box-shadow: 4px 0 12px rgba(0, 0, 0, 0.06);
-      padding: 20px 0;
-      border-radius: 0 20px 20px 0;
-    }
-
-    .sidebar h4 {
-      text-align: center;
-      color: #ffffff;
-      font-weight: 800;
-      margin-bottom: 25px;
-    }
-
-    .sidebar a {
-      color: #f9f9ff;
-      text-decoration: none;
-      display: block;
-      padding: 12px 22px;
-      font-weight: 600;
-      border-left: 4px solid transparent;
-      border-radius: 8px;
-      margin: 6px 15px;
-      transition: all 0.25s ease;
-    }
-
-    .sidebar a:hover,
-    .sidebar a.active {
-      background: rgba(255, 255, 255, 0.25);
-      border-left: 4px solid #fff;
-      color: #fff;
-      transform: translateX(4px);
-    }
-
-    /* Konten utama */
-    .main-content {
-      margin-left: 250px;
-      padding: 35px;
-    }
-
-    /* Topbar */
-    .topbar {
-      background: #ffffff;
-      padding: 15px 25px;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(63, 81, 181, 0.08);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 25px;
-    }
-
-    @media (max-width: 768px) {
-      .main-content { margin-left: 0; padding: 20px; }
-      .sidebar { width: 100%; height: auto; position: relative; border-radius: 0; }
-    }
-  </style>
+    <!-- Additional Styles -->
+    @stack('styles')
 </head>
-<body>
 
-  {{-- Sidebar --}}
-  <div class="sidebar">
-    <h4>Dashboard</h4>
-    <a href="{{ url('/dashboard') }}" class="{{ Request::is('dashboard') ? 'active' : '' }}">🏠 Home</a>
-    <a href="{{ url('/dokumen') }}" class="{{ Request::is('dokumen*') ? 'active' : '' }}">📂 Dokumen</a>
-    <a href="{{ url('/artikel') }}" class="{{ Request::is('artikel*') ? 'active' : '' }}">📰 Artikel</a>
-    <a href="{{ url('/tentang') }}" 
-   class="hover:text-lime-300 transition {{ Request::is('tentang*') ? 'text-lime-400 font-semibold' : 'text-gray-200' }}">
-   🏢 Tentang Kami
-</a>
+<body id="page-top">
 
+    <div id="wrapper">
 
-  </div>
+        <!-- Sidebar -->
+        @include('layout.v_nav')
+        <!-- End Sidebar -->
 
-  {{-- Konten utama --}}
-  <div class="main-content">
-    <div class="topbar">
-      <h5>Selamat Datang, {{ Auth::user()->name }}</h5>
-      <div class="dropdown">
-        <button class="btn btn-light dropdown-toggle d-flex align-items-center"
-                type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="{{ Auth::user()->foto ? asset('storage/foto_user/' . Auth::user()->foto) : asset('images/default-avatar.png') }}"
-               alt="User" width="40" height="40" class="rounded-circle me-2">
-          <span>{{ Auth::user()->name }}</span>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-          <li><a class="dropdown-item" href="{{ route('profile.edit') }}">✏️ Edit Profil</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li>
-            <form action="{{ route('logout') }}" method="POST">
-              @csrf
-              <button type="submit" class="dropdown-item text-danger">🚪 Logout</button>
-            </form>
-          </li>
-        </ul>
-      </div>
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                @include('layout.v_topbar')
+                <!-- End Topbar -->
+
+                <!-- Page Content -->
+                <div class="container-fluid">
+                    @yield('content')
+                </div>
+
+            </div>
+            <!-- End Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        &copy; {{ date('Y') }} Smart Tech Dashboard
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+        <!-- End Content Wrapper -->
+
+    </div>
+    <!-- End Page Wrapper -->
+
+    <!-- Scroll to Top Button -->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Siap Keluar?</h5>
+                    <button class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    Pilih "Logout" jika ingin mengakhiri sesi saat ini.
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <a class="btn btn-primary" href="{{ route('logout') }}"
+                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>
+                </div>
+            </div>
+        </div>
     </div>
 
-    {{-- Area konten dinamis --}}
-    @yield('content')
-  </div>
-
-  {{-- Script Bootstrap --}}
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JS -->
+    <script src="{{ asset('template/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('template/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('template/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('template/js/sb-admin-2.min.js') }}"></script>
+    @stack('scripts')
 </body>
 </html>

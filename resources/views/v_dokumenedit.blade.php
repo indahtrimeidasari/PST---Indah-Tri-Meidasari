@@ -23,12 +23,14 @@
             @csrf
             @method('PUT')
 
+            {{-- Nama Dokumen --}}
             <div class="mb-3">
                 <label for="nama_dokumen" class="form-label fw-semibold">Nama Dokumentasi</label>
                 <input type="text" name="nama_dokumen" class="form-control rounded-3" id="nama_dokumen" required
                        value="{{ old('nama_dokumen', $dokumen->nama_dokumen) }}">
             </div>
 
+            {{-- Deskripsi --}}
             <div class="mb-3">
                 <label for="deskripsi" class="form-label fw-semibold">Deskripsi (opsional)</label>
                 <textarea name="deskripsi" class="form-control rounded-3" id="deskripsi" rows="3">{{ old('deskripsi', $dokumen->deskripsi) }}</textarea>
@@ -41,7 +43,7 @@
                     <option value="">-- Pilih Tipe --</option>
                     <option value="pdf" {{ $dokumen->tipe == 'pdf' ? 'selected' : '' }}>📄 Dokumen (PDF)</option>
                     <option value="foto" {{ $dokumen->tipe == 'foto' ? 'selected' : '' }}>🖼️ Foto</option>
-                    <option value="video_link" {{ $dokumen->tipe == 'video_link' ? 'selected' : '' }}>🎥 Video Link</option>
+                    <option value="video" {{ $dokumen->tipe == 'video' ? 'selected' : '' }}>🎥 Video Link</option>
                 </select>
             </div>
 
@@ -71,11 +73,30 @@
 
             {{-- Input Video Link --}}
             <div class="mb-3" id="videoInput" style="display:none;">
-                <label for="video_link" class="form-label fw-semibold">Link Video</label>
+                <label for="video_link" class="form-label fw-semibold">Link Video YouTube</label>
                 <input type="url" name="video_link" class="form-control rounded-3" placeholder="Contoh: https://youtube.com/watch?v=xxxx" value="{{ old('video_link', $dokumen->video_link) }}">
+
+                @if($dokumen->video_link)
+                    @php
+                        $yt_embed = null;
+                        // regex yang lebih aman untuk YouTube
+                        if(preg_match('/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w\-]+)/', $dokumen->video_link, $matches)) {
+                            $yt_embed = "https://www.youtube.com/embed/".$matches[1];
+                        }
+                    @endphp
+
+                    @if($yt_embed)
+                        <div class="ratio ratio-16x9 mt-2" style="max-width:300px; margin-top:10px;">
+                            <iframe src="{{ $yt_embed }}" allowfullscreen loading="lazy" style="border-radius:10px;"></iframe>
+                        </div>
+                    @else
+                        <small class="text-muted d-block mt-1">Link saat ini: {{ $dokumen->video_link }}</small>
+                    @endif
+                @endif
             </div>
 
-            <div class="text-center">
+            {{-- Tombol aksi --}}
+            <div class="text-center mt-3">
                 <button type="submit" class="btn btn-success px-4 rounded-4 fw-semibold">💾 Simpan Perubahan</button>
                 <a href="{{ route('dokumen.index') }}" class="btn btn-secondary px-4 rounded-4 ms-2">Batal</a>
             </div>
@@ -88,8 +109,10 @@
         const tipe = document.getElementById('tipe').value;
         document.getElementById('fileInput').style.display = tipe === 'pdf' ? 'block' : 'none';
         document.getElementById('fotoInput').style.display = tipe === 'foto' ? 'block' : 'none';
-        document.getElementById('videoInput').style.display = tipe === 'video_link' ? 'block' : 'none';
+        document.getElementById('videoInput').style.display = tipe === 'video' ? 'block' : 'none';
     }
+
+    // Jalankan toggleInput setelah DOM siap agar input sesuai tipe yang sudah dipilih
     document.addEventListener('DOMContentLoaded', toggleInput);
 </script>
 @endsection

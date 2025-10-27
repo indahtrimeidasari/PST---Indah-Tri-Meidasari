@@ -76,6 +76,7 @@
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="#Beranda">Beranda</a></li>
         <li class="nav-item"><a class="nav-link" href="#tentang-kami">Tentang Kami</a></li>
+        <li class="nav-item"><a class="nav-link" href="#artikel">Artikel</a></li>
         <li class="nav-item"><a class="nav-link" href="#features">Fitur</a></li>
         <li class="nav-item"><a class="nav-link" href="#dokumen">Dokumentasi</a></li>
         <li class="nav-item"><a class="nav-link" href="#contact">Kontak</a></li>

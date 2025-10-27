@@ -6,7 +6,7 @@
     <div class="card shadow rounded-4 p-4">
         <h3 class="fw-bold text-primary mb-4 text-center">➕ Tambah Tentang Kami</h3>
 
-        {{-- 🔔 Pesan Error --}}
+        {{🔔 Pesan Error}}
         @if($errors->any())
             <div class="alert alert-danger">
                 <ul class="mb-0">
@@ -17,7 +17,7 @@
             </div>
         @endif
 
-        {{-- 📝 Form Tambah --}}
+        {{📝 Form Tambah}}
         <form action="{{ route('tentang.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
@@ -48,7 +48,7 @@
                 <img id="preview" src="#" class="mt-3 rounded shadow-sm" style="display:none; max-width:150px;">
             </div>
 
-            {{-- 🔘 Tombol Aksi --}}
+            {{🔘 Tombol Aksi}}
             <div class="d-flex justify-content-between align-items-center mt-4">
                 <a href="{{ route('tentang.index') }}" class="btn btn-secondary rounded-4 px-4">
                     ⬅ Kembali

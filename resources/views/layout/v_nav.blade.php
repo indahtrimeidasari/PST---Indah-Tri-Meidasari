@@ -1,80 +1,42 @@
-<ul class="navbar-nav sidebar sidebar-dark accordion bg-brown shadow" id="accordionSidebar">
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color: #5C4033;">
 
-    <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center py-3" href="/">
+    <!-- Sidebar Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center py-3" href="{{ url('/dashboard') }}">
         <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-leaf fa-lg"></i>
+            <i class="fas fa-leaf"></i>
         </div>
-        <div class="sidebar-brand-text mx-3 text-light">DATA PENJUALAN</div>
+        <div class="sidebar-brand-text mx-3 text-light">SMART TECH</div>
     </a>
 
     <hr class="sidebar-divider my-0 bg-light">
 
-    <!-- Home -->
-    <li class="nav-item {{ Request::is('admin') ? 'active' : '' }}">
-        <a class="nav-link d-flex align-items-center text-light" href="/admin">
-            <i class="fas fa-tachometer-alt mr-2"></i>
-            <span>Home</span>
+    <!-- Menu Items -->
+    <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
+        <a class="nav-link text-light" href="{{ url('/dashboard') }}">
+            <i class="fas fa-home"></i> <span>Home</span>
+        </a>
+    </li>
+
+    <li class="nav-item {{ Request::is('dokumen*') ? 'active' : '' }}">
+        <a class="nav-link text-light" href="{{ url('/dokumen') }}">
+            <i class="fas fa-folder"></i> <span>Dokumen</span>
+        </a>
+    </li>
+
+    <li class="nav-item {{ Request::is('artikel*') ? 'active' : '' }}">
+        <a class="nav-link text-light" href="{{ url('/artikel') }}">
+            <i class="fas fa-newspaper"></i> <span>Artikel</span>
+        </a>
+    </li>
+
+    <li class="nav-item {{ Request::is('tentang*') ? 'active' : '' }}">
+        <a class="nav-link text-light" href="{{ url('/tentang') }}">
+            <i class="fas fa-building"></i> <span>Tentang Kami</span>
         </a>
     </li>
 
     <hr class="sidebar-divider bg-light">
-
-    <!-- Pesanan -->
-    <li class="nav-item {{ Request::is('pesanan') ? 'active' : '' }}">
-        <a class="nav-link d-flex align-items-center text-light" href="/pesanan">
-            <i class="fas fa-box-open mr-2"></i>
-            <span>Pesanan</span>
-        </a>
-    </li>
-
-    <!-- Keuangan -->
-    <li class="nav-item {{ Request::is('keuangan') ? 'active' : '' }}">
-        <a class="nav-link d-flex align-items-center text-light" href="/keuangan">
-            <i class="fas fa-wallet mr-2"></i>
-            <span>Keuangan</span>
-        </a>
-    </li>
-
-    <!-- Produk -->
-    <li class="nav-item {{ Request::is('produk') ? 'active' : '' }}">
-        <a class="nav-link d-flex align-items-center text-light" href="/produk">
-            <i class="fas fa-boxes mr-2"></i>
-            <span>Produk</span>
-        </a>
-    </li>
-
-    <!-- Media Tanam -->
-    <li class="nav-item {{ Request::is('mediatanam') ? 'active' : '' }}">
-        <a class="nav-link d-flex align-items-center text-light" href="/mediatanam">
-            <i class="fas fa-seedling mr-2"></i>
-            <span>Media Tanam</span>
-        </a>
-    </li>
-
-    <!-- Panen -->
-    <li class="nav-item {{ Request::is('panen') ? 'active' : '' }}">
-        <a class="nav-link d-flex align-items-center text-light" href="/panen">
-            <i class="fas fa-carrot mr-2"></i>
-            <span>Hasil Panen</span>
-        </a>
-    </li>
-
-    <!-- Pesan Masuk -->
-    <li class="nav-item {{ Request::is('pesan-masuk') ? 'active' : '' }}">
-        <a class="nav-link d-flex align-items-center text-light" href="/pesan-masuk">
-            <i class="fas fa-box-open mr-2"></i>
-            <span>Pesan Masuk</span>
-        </a>
-    </li>
-
-    <!-- Laporan Transaksi -->
-    <li class="nav-item {{ Request::is('laporantransaksi') ? 'active' : '' }}">
-        <a class="nav-link d-flex align-items-center text-light" href="/laporantransaksi">
-            <i class="fas fa-wallet mr-2"></i>
-            <span>Laporan Transaksi</span>
-        </a>
-    </li>
 
     <!-- Logout -->
     <li class="nav-item">
@@ -91,75 +53,27 @@
 
     <!-- Sidebar Toggler -->
     <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0 bg-light" id="sidebarToggle"></button>
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
 </ul>
 
-<!-- CSS SIDEBAR -->
+@push('styles')
 <style>
-    .bg-brown {
-        background-color: #5C4033 !important;
-    }
-
-    .sidebar .nav-link,
-    .sidebar .collapse-inner a {
-        color: #f8f8f8 !important;
+    /* Sidebar */
+    .sidebar .nav-link {
         font-size: 0.95rem;
-        transition: all 0.2s ease-in-out;
+        transition: all 0.2s;
     }
-
-    .sidebar .nav-link i {
-        min-width: 1.5rem;
-        text-align: center;
-    }
-
-    .sidebar .nav-link:hover,
-    .sidebar .collapse-inner a:hover {
-        background-color: #A0522D !important;
-        color: #fff !important;
-        font-weight: 600;
-    }
-
-    .sidebar .collapse-inner {
-        background-color: #7B4F2C !important;
-    }
-
-    .sidebar .collapse-header {
-        color: #ffffff !important;
-        font-size: 0.85rem;
-        padding-left: 1.5rem;
-    }
-
     .sidebar .nav-item.active > .nav-link {
         background-color: #8B4513 !important;
-        color: white !important;
         font-weight: bold;
     }
-
-    .sidebar .sidebar-brand-text {
-        font-size: 1rem;
-        font-weight: 600;
+    .sidebar .nav-link:hover {
+        background-color: #A0522D !important;
+        color: #fff !important;
     }
-
-    .sidebar .fas {
-        color: #f8f8f8 !important;
-    }
-
-    #sidebarToggle {
-        background-color: #DDD;
-    }
-
-    .collapse-inner .collapse-item {
-        padding: 0.5rem 1.5rem;
-    }
-
-    @media (max-width: 768px) {
-        .sidebar .nav-link span {
-            font-size: 0.85rem;
-        }
-
-        .sidebar .sidebar-brand-text {
-            font-size: 0.85rem;
-        }
+    .sidebar-divider {
+        border-top: 1px solid #f8f8f8 !important;
     }
 </style>
+@endpush

@@ -40,7 +40,6 @@ Route::get('/', [C_Home::class, 'index'])->name('index');
 // Dashboard Pages
 // =====================
 Route::view('/admin', 'admin.v_dashboard')->name('admin');
-Route::view('/dashboard1', 'admin.v_dashboard1')->name('dashboard1');
 Route::view('/dashboard', 'v_dashboard')->name('dashboard');
 
 
