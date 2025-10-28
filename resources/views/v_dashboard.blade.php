@@ -23,7 +23,7 @@
           </p>
 
           <p class="text-secondary mt-3">
-            Gunakan menu di sebelah kiri untuk mengelola profil dan dokumen Anda.
+            Gunakan menu di sebelah kiri untuk mengelola dokumen Anda dan edit profile ada di sebelah pojok kanan atas
           </p>
         </div>
       </div>
